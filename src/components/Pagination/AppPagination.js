@@ -7,7 +7,7 @@ const AppPagination = ({ pageCount, pageNumber, setPageNumber }) => {
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ display: 'flex', alignItems: 'center', m: 3 }}>
       <Pagination count={pageCount} page={pageNumber} onChange={handleChange} />
     </Stack>
   );

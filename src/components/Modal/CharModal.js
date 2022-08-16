@@ -44,15 +44,22 @@ const CharModal = ({ open, setOpen, modalInfo }) => {
       >
         <Box sx={style}>
           <img src={modalInfo.image} alt="" />
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {modalInfo.name}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            First Episode: {firstEpisode.episode}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Last Episode: {lastEpisode.episode}
-          </Typography>
+          <Box sx={{ m: 1.5 }}>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              fontWeight={'bold'}
+            >
+              {modalInfo.name}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <strong>First Episode:</strong> {firstEpisode.episode}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <strong>Last Episode:</strong> {lastEpisode.episode}
+            </Typography>
+          </Box>
         </Box>
       </Modal>
     </>
@@ -64,11 +71,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
 };
 
 export default CharModal;

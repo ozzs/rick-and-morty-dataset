@@ -17,7 +17,6 @@ const Filters = ({ gender, setGender, status, setStatus, setSearch }) => {
         flexDirection: 'row',
         alignItems: 'center',
         m: 1,
-        // border: '1px solid black',
       }}
     >
       <Gender gender={gender} setGender={setGender} />
