@@ -2,6 +2,8 @@
 
 ## Interface
 ![character-table](https://github.com/ozzs/rickandmortyapp/blob/main/src/media/CharacterTable.png)
+![character-cards](https://github.com/ozzs/rickandmortyapp/blob/main/src/media/CharactersCards.png)
+![episodes-chart](https://github.com/ozzs/rickandmortyapp/blob/main/src/media/EpisodesChar.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
