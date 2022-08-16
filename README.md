@@ -1,7 +1,7 @@
 <h1 align="center"> Rick & Morty Character App </h1>
 
 ## Interface
-
+![character-table](https://github.com/ozzs/rickandmortyapp/blob/main/src/media/CharacterTable.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
