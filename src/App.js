@@ -62,7 +62,7 @@ function App() {
           />
         </>
       ) : (
-        <div>NO DATA TO DISPLAY</div>
+        <div>NO DATA TO DISPLAY!</div>
       )}
     </div>
   );
