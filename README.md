@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+<h1 align="center"> Rick & Morty Character App </h1>
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
