@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Search from '../Search/Search';
 import AppPagination from '../Pagination/AppPagination';
 import CharTable from '../Display/CharTable';
 import Filters from '../Filters/Filters';
 import CharCards from '../Display/CharCards';
 import { Select, MenuItem, Box } from '@mui/material';
+import { useApiRequest } from '../utils/Hooks';
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-
   const [pageNumber, setPageNumber] = useState(1);
-  const [data, setData] = useState(null);
   const [search, setSearch] = useState('');
   const [gender, setGender] = useState('');
   const [status, setStatus] = useState('');
@@ -22,30 +20,11 @@ const Home = () => {
     setDisplay(event.target.value);
   };
 
-  useEffect(() => {
-    async function getData() {
-      await fetch(api)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw response;
-        })
-        .then(data => {
-          setData(data);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          setData(null);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-    getData();
-  }, [api]);
+  const { isLoaded, data, error } = useApiRequest(api);
 
-  if (loading) return 'loading...';
+  if (isLoaded) return 'loading...';
+
+  if (error) console.log(error);
 
   return (
     <div className="App">
