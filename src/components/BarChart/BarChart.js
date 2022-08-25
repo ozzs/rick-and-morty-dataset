@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import AppPagination from '../Pagination/AppPagination';
-import { useApiRequest } from '../utils/Hooks';
+import { useApiRequest } from '../utils/hooks';
 
 ChartJS.register(
   CategoryScale,
@@ -41,33 +41,21 @@ const BarChart = () => {
 
   const api = `https://rickandmortyapi.com/api/episode/?page=${pageNumber}`;
 
-  const { isLoaded, data, error } = useApiRequest(api);
+  const { loading, data, error } = useApiRequest(api);
 
-  if (isLoaded) return 'loading...';
+  if (loading) return 'loading...';
 
-  if (error) console.log(error);
-
-  // Returns array with episodes code (sorted by episode)
-  const episodeMap = data => {
-    const labels = data.map(item => item.episode);
-    return labels;
-  };
-
-  // Returns array with amount of characters per episode (sorted by episode)
-  const charactersCount = data => {
-    const charactersAmount = data.map(item => item.characters.length);
-    return charactersAmount;
-  };
+  if (error) console.error(`error fetching data: ${error}`);
 
   return (
     <>
       <Bar
         data={{
-          labels: episodeMap(data.results),
+          labels: data.results.map(item => item.episode),
           datasets: [
             {
               label: 'Amount of characters in episode',
-              data: charactersCount(data.results),
+              data: data.results.map(item => item.characters.length),
               backgroundColor: '#42a5f5',
               borderColor: '#0288d1',
             },

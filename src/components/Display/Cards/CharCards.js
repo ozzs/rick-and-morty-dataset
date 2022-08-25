@@ -7,15 +7,15 @@ import {
   Avatar,
   Box,
 } from '@mui/material';
-import CharModal from '../Modal/CharModal';
+import CharModal from '../../Modal/CharModal';
 
-const CharCards = ({ data }) => {
+const CharCards = ({ characterList }) => {
   const [open, setOpen] = useState(false);
-  const [modalInfo, setModalInfo] = useState(null);
+  const [characterInfo, setCharacterInfo] = useState(null);
 
   const handleOpen = row => {
     setOpen(true);
-    setModalInfo(row);
+    setCharacterInfo(row);
   };
 
   return (
@@ -29,7 +29,7 @@ const CharCards = ({ data }) => {
           mt: 1,
         }}
       >
-        {data.map(char => (
+        {characterList.map(char => (
           <Grid item key={char.id}>
             <Card
               sx={{ width: 275, cursor: 'pointer' }}
@@ -68,7 +68,11 @@ const CharCards = ({ data }) => {
         ))}
       </Grid>
       {open && (
-        <CharModal modalInfo={modalInfo} open={open} setOpen={setOpen} />
+        <CharModal
+          characterInfo={characterInfo}
+          open={open}
+          setOpen={setOpen}
+        />
       )}
     </>
   );

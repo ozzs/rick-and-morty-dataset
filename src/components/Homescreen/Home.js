@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Search from '../Search/Search';
 import AppPagination from '../Pagination/AppPagination';
-import CharTable from '../Display/CharTable';
+import CharTable from '../Display/Table/CharTable';
 import Filters from '../Filters/Filters';
-import CharCards from '../Display/CharCards';
+import CharCards from '../Display/Cards/CharCards';
 import { Select, MenuItem, Box } from '@mui/material';
-import { useApiRequest } from '../utils/Hooks';
+import { useApiRequest } from '../utils/hooks';
 
 const Home = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -13,6 +13,7 @@ const Home = () => {
   const [gender, setGender] = useState('');
   const [status, setStatus] = useState('');
   const [display, setDisplay] = useState('Table');
+  const CharComponent = display === 'Cards' ? CharCards : CharTable;
 
   const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&gender=${gender}&status=${status}`;
 
@@ -20,11 +21,11 @@ const Home = () => {
     setDisplay(event.target.value);
   };
 
-  const { isLoaded, data, error } = useApiRequest(api);
+  const { loading, data, error } = useApiRequest(api);
 
-  if (isLoaded) return 'loading...';
+  if (loading) return 'loading...';
 
-  if (error) console.log(error);
+  if (error) console.error(`error fetching data: ${error}`);
 
   return (
     <div className="App">
@@ -58,15 +59,10 @@ const Home = () => {
         setStatus={setStatus}
         setSearch={setSearch}
       />
+      {console.log('The Data: ', data)}
       {data !== null ? (
         <>
-          {display === 'Cards' ? (
-            <CharCards data={data.results} />
-          ) : (
-            <>
-              <CharTable data={data.results} />
-            </>
-          )}
+          <CharComponent characterList={data.results} />
           <AppPagination
             pageCount={data.info.pages}
             pageNumber={pageNumber}

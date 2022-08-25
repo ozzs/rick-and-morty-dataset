@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Box, Typography } from '@mui/material';
 
-const CharModal = ({ open, setOpen, modalInfo }) => {
+const CharModal = ({ open, setOpen, characterInfo }) => {
   const [loading, setLoading] = useState(true);
 
-  const firstEpAPI = modalInfo.episode[0];
-  const lastEpAPI = modalInfo.episode[modalInfo.episode.length - 1];
+  const firstEpAPI = characterInfo.episode[0];
+  const lastEpAPI = characterInfo.episode[characterInfo.episode.length - 1];
 
   const [firstEpisode, setFirstEpisode] = useState();
   const [lastEpisode, setLastEpisode] = useState();
@@ -43,7 +43,7 @@ const CharModal = ({ open, setOpen, modalInfo }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <img src={modalInfo.image} alt="" />
+          <img src={characterInfo.image} alt="" />
           <Box sx={{ m: 1.5 }}>
             <Typography
               id="modal-modal-title"
@@ -51,7 +51,7 @@ const CharModal = ({ open, setOpen, modalInfo }) => {
               component="h2"
               fontWeight={'bold'}
             >
-              {modalInfo.name}
+              {characterInfo.name}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <strong>First Episode:</strong> {firstEpisode.episode}

@@ -3,11 +3,12 @@ import Gender from './Categories/Gender';
 import Status from './Categories/Status';
 import { Box, Button } from '@mui/material';
 
-const Filters = ({ gender, setGender, status, setStatus, setSearch }) => {
+const Filters = ({ gender, setGender, status, setStatus }) => {
   const clearAll = () => {
     setGender('');
     setStatus('');
   };
+
   return (
     <Box
       sx={{
