@@ -1,29 +1,25 @@
-import { useState } from 'react';
-import Search from '../Search/Search';
-import AppPagination from '../Pagination/AppPagination';
-import CharTable from '../Display/Table/CharTable';
-import Filters from '../Filters/Filters';
-import CharCards from '../Display/Cards/CharCards';
-import { Select, MenuItem, Box } from '@mui/material';
-import { useApiRequest } from '../utils/hooks';
+import { useState } from "react";
+import Search from "../Search/Search";
+import AppPagination from "../Pagination/AppPagination";
+import CharTable from "../Display/Table/CharTable";
+import Filters from "../Filters/Filters";
+import CharCards from "../Display/Cards/CharCards";
+import { Select, MenuItem, Box } from "@mui/material";
+import { useApiRequest } from "../utils/hooks";
 
 const Home = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const [search, setSearch] = useState('');
-  const [gender, setGender] = useState('');
-  const [status, setStatus] = useState('');
-  const [display, setDisplay] = useState('Table');
-  const CharComponent = display === 'Cards' ? CharCards : CharTable;
+  const [search, setSearch] = useState("");
+  const [gender, setGender] = useState("");
+  const [status, setStatus] = useState("");
+  const [display, setDisplay] = useState("Table");
+  const CharComponent = display === "Cards" ? CharCards : CharTable;
 
   const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&gender=${gender}&status=${status}`;
 
-  const handleChange = event => {
-    setDisplay(event.target.value);
-  };
-
   const { loading, data, error } = useApiRequest(api);
 
-  if (loading) return 'loading...';
+  if (loading) return "loading...";
 
   if (error) console.error(`error fetching data: ${error}`);
 
@@ -32,8 +28,8 @@ const Home = () => {
       <Box
         sx={{
           flexGrow: 1,
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           m: 1,
         }}
       >
@@ -42,14 +38,14 @@ const Home = () => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={display}
-          onChange={handleChange}
+          onChange={(e) => setDisplay(e.target.value)}
           sx={{
             height: 50,
             m: 1,
           }}
         >
-          <MenuItem value={'Table'}>Table</MenuItem>
-          <MenuItem value={'Cards'}>Cards</MenuItem>
+          <MenuItem value={"Table"}>Table</MenuItem>
+          <MenuItem value={"Cards"}>Cards</MenuItem>
         </Select>
       </Box>
       <Filters
@@ -59,7 +55,7 @@ const Home = () => {
         setStatus={setStatus}
         setSearch={setSearch}
       />
-      {console.log('The Data: ', data)}
+      {console.log("The Data: ", data)}
       {data !== null ? (
         <>
           <CharComponent characterList={data.results} />

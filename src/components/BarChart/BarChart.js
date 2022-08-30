@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,10 +7,10 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import AppPagination from '../Pagination/AppPagination';
-import { useApiRequest } from '../utils/hooks';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import AppPagination from "../Pagination/AppPagination";
+import { useApiRequest } from "../utils/hooks";
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 const options = {
-  indexAxis: 'y',
+  indexAxis: "y",
   elements: {
     bar: {
       borderWidth: 3,
@@ -43,7 +43,7 @@ const BarChart = () => {
 
   const { loading, data, error } = useApiRequest(api);
 
-  if (loading) return 'loading...';
+  if (loading) return "loading...";
 
   if (error) console.error(`error fetching data: ${error}`);
 
@@ -51,13 +51,13 @@ const BarChart = () => {
     <>
       <Bar
         data={{
-          labels: data.results.map(item => item.episode),
+          labels: data.results.map((item) => item.episode),
           datasets: [
             {
-              label: 'Amount of characters in episode',
-              data: data.results.map(item => item.characters.length),
-              backgroundColor: '#42a5f5',
-              borderColor: '#0288d1',
+              label: " Amount of characters in episode",
+              data: data.results.map((item) => item.characters.length),
+              backgroundColor: "#42a5f5",
+              borderColor: "#0288d1",
             },
           ],
         }}

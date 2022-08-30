@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-export const useApiRequest = url => {
+export const useApiRequest = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchSongs = async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -20,7 +20,7 @@ export const useApiRequest = url => {
         setLoading(false);
       }
     };
-    fetchSongs();
+    fetchData();
   }, [url]);
 
   return { loading, data, error };
